@@ -30,12 +30,14 @@ export const updateAmountCollection = async (amount) => {
 };
 
 export const handleRead = async (callback) => {
-  const data = [];
-  const querySnapshot = await getDocs(collection(db, "sim-card"));
-  querySnapshot.forEach((doc) => {
-    data.push(doc.data());
-  });
-  callback(data);
+  try {
+    const data = [];
+    const querySnapshot = await getDocs(collection(db, "sim-card"));
+    querySnapshot.forEach((doc) => {
+      data.push(doc.data());
+    });
+    callback(data);
+  } catch (error) {}
 };
 
 export const handleDelete = async (index, id) => {
